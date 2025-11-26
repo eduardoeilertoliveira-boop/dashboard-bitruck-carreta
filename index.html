@@ -702,6 +702,7 @@
             <button class="tab-button active" onclick="switchTab('dashboard')">📈 Dashboard</button>
             <button class="tab-button" onclick="switchTab('insights')">💡 Insights</button>
             <button class="tab-button" onclick="switchTab('analysis')">🔍 Análise Detalhada</button>
+            <button class="tab-button" onclick="switchTab('abbrasil')">📊 AB Brasil</button>
         </div>
 
         <!-- Aba 1: Dashboard -->
@@ -920,6 +921,140 @@
             </div>
         </div>
     </div>
+
+
+        <!-- Aba 4: AB Brasil -->
+        <div id="abbrasil" class="tab-content">
+            <div class="analysis-section">
+                <h2 class="analysis-title">📊 Proporção do Volume de Cargas AB Brasil</h2>
+                <p class="analysis-description">
+                    Análise da participação percentual da AB Brasil no volume total de cargas transportadas de Janeiro a Outubro de 2025.
+                </p>
+            </div>
+
+            <!-- KPI AB Brasil -->
+            <div class="kpi-container">
+                <div class="kpi-card">
+                    <div class="kpi-label">Média AB Brasil 2025</div>
+                    <div class="kpi-value" id="abBrasilMedia">31,91%</div>
+                    <div class="kpi-change neutral">
+                        📈 Participação média
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Maior Participação</div>
+                    <div class="kpi-value" id="abBrasilMax">34,79%</div>
+                    <div class="kpi-change positive">
+                        📅 Junho/25
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Menor Participação</div>
+                    <div class="kpi-value" id="abBrasilMin">26,18%</div>
+                    <div class="kpi-change negative">
+                        📅 Abril/25
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Amplitude</div>
+                    <div class="kpi-value" id="abBrasilAmplitude">8,61%</div>
+                    <div class="kpi-change neutral">
+                        📊 Variação
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gráficos AB Brasil -->
+            <div class="charts-grid">
+                <div class="chart-card full-width">
+                    <div class="chart-header">
+                        <span class="chart-title">Evolução da Proporção AB Brasil (2025)</span>
+                        <div class="chart-controls">
+                            <button class="btn-primary" onclick="downloadChart('abBrasilLineChart')">⬇️ Download</button>
+                            <button class="btn-secondary" onclick="toggleChartFullscreen('abBrasilLineChart')">⛶ Tela Cheia</button>
+                        </div>
+                    </div>
+                    <div class="chart-container large">
+                        <canvas id="abBrasilLineChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <span class="chart-title">Distribuição Mensal AB Brasil</span>
+                        <div class="chart-controls">
+                            <button class="btn-primary" onclick="downloadChart('abBrasilBarChart')">⬇️ Download</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="abBrasilBarChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <span class="chart-title">Média Trimestral</span>
+                        <div class="chart-controls">
+                            <button class="btn-primary" onclick="downloadChart('abBrasilTrimChart')">⬇️ Download</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="abBrasilTrimChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Insights AB Brasil -->
+            <div class="analysis-section" style="margin-top: 30px;">
+                <h3 class="analysis-subtitle">📈 Insights AB Brasil</h3>
+                <div class="insights-container">
+                    <div class="insight-card positive">
+                        <div class="insight-header">
+                            <span class="insight-icon">📊</span>
+                            <span class="insight-title">Participação Consistente</span>
+                        </div>
+                        <div class="insight-content">
+                            A AB Brasil manteve uma participação média de <span class="insight-metric positive">31,91%</span> 
+                            no volume total de cargas durante 2025, demonstrando presença consistente no mercado.
+                        </div>
+                    </div>
+
+                    <div class="insight-card positive">
+                        <div class="insight-header">
+                            <span class="insight-icon">🎯</span>
+                            <span class="insight-title">Melhor Performance</span>
+                        </div>
+                        <div class="insight-content">
+                            O mês de <span class="insight-metric positive">Junho/25</span> registrou a maior participação 
+                            com <span class="insight-metric positive">34,79%</span>, indicando forte desempenho no período.
+                        </div>
+                    </div>
+
+                    <div class="insight-card negative">
+                        <div class="insight-header">
+                            <span class="insight-icon">⚠️</span>
+                            <span class="insight-title">Ponto de Atenção</span>
+                        </div>
+                        <div class="insight-content">
+                            <span class="insight-metric negative">Abril/25</span> apresentou a menor participação 
+                            com <span class="insight-metric negative">26,18%</span>, sugerindo necessidade de análise 
+                            dos fatores que influenciaram essa queda.
+                        </div>
+                    </div>
+
+                    <div class="insight-card neutral">
+                        <div class="insight-header">
+                            <span class="insight-icon">📉</span>
+                            <span class="insight-title">Variabilidade</span>
+                        </div>
+                        <div class="insight-content">
+                            A amplitude de <span class="insight-metric">8,61%</span> entre o maior e menor valor 
+                            indica uma variação moderada na participação ao longo do ano.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <!-- Modal para Fullscreen -->
     <div id="fullscreenModal" class="modal" onclick="closeFullscreen(event)">
@@ -1739,10 +1874,166 @@
             location.reload();
         }
 
+        // Dados AB Brasil (independentes dos demais)
+        const abBrasilData = [
+            {"mes": "jan/25", "percentual": 30.97},
+            {"mes": "fev/25", "percentual": 31.89},
+            {"mes": "mar/25", "percentual": 33.81},
+            {"mes": "abr/25", "percentual": 26.18},
+            {"mes": "mai/25", "percentual": 32.08},
+            {"mes": "jun/25", "percentual": 34.79},
+            {"mes": "jul/25", "percentual": 31.16},
+            {"mes": "ago/25", "percentual": 33.64},
+            {"mes": "set/25", "percentual": 32.03},
+            {"mes": "out/25", "percentual": 31.50}
+        ];
+
+        // Função para criar gráficos AB Brasil
+        function createABBrasilCharts() {
+            // Gráfico de Linha
+            const ctxABLine = document.getElementById('abBrasilLineChart');
+            if (ctxABLine) {
+                charts.abBrasilLineChart = new Chart(ctxABLine, {
+                    type: 'line',
+                    data: {
+                        labels: abBrasilData.map(d => d.mes.toUpperCase()),
+                        datasets: [{
+                            label: 'AB Brasil (%)',
+                            data: abBrasilData.map(d => d.percentual),
+                            borderColor: '#00d4ff',
+                            backgroundColor: 'rgba(0, 212, 255, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 6,
+                            pointHoverRadius: 8,
+                            pointBackgroundColor: '#00d4ff',
+                            pointBorderColor: '#1a1a2e',
+                            pointBorderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            datalabels: {
+                                display: true,
+                                color: '#ffffff',
+                                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                                borderRadius: 4,
+                                padding: 6,
+                                font: { size: 11, weight: 'bold' },
+                                align: 'top',
+                                offset: 8,
+                                formatter: function(value) { return value.toFixed(2) + '%'; }
+                            },
+                            legend: { display: true, labels: { font: { size: 14 }, padding: 15, color: '#e0e0e0' } },
+                            tooltip: { enabled: true, callbacks: { label: function(context) { return 'AB Brasil: ' + context.parsed.y.toFixed(2) + '%'; } } }
+                        },
+                        scales: {
+                            y: { beginAtZero: true, max: 40, grid: { display: true, color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#7a7a9e', callback: function(value) { return value + '%'; } } },
+                            x: { grid: { display: false }, ticks: { color: '#7a7a9e' } }
+                        }
+                    }
+                });
+            }
+
+            // Gráfico de Barras
+            const ctxABBar = document.getElementById('abBrasilBarChart');
+            if (ctxABBar) {
+                charts.abBrasilBarChart = new Chart(ctxABBar, {
+                    type: 'bar',
+                    data: {
+                        labels: abBrasilData.map(d => d.mes.toUpperCase()),
+                        datasets: [{
+                            label: 'AB Brasil (%)',
+                            data: abBrasilData.map(d => d.percentual),
+                            backgroundColor: abBrasilData.map(d => { if (d.percentual >= 33) return 'rgba(0, 212, 255, 0.8)'; if (d.percentual >= 30) return 'rgba(255, 193, 7, 0.8)'; return 'rgba(255, 82, 82, 0.8)'; }),
+                            borderColor: abBrasilData.map(d => { if (d.percentual >= 33) return '#00d4ff'; if (d.percentual >= 30) return '#ffc107'; return '#ff5252'; }),
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            datalabels: {
+                                display: true,
+                                color: '#ffffff',
+                                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                                borderRadius: 4,
+                                padding: 6,
+                                font: { size: 11, weight: 'bold' },
+                                align: 'end',
+                                anchor: 'end',
+                                offset: 4,
+                                formatter: function(value) { return value.toFixed(2) + '%'; }
+                            },
+                            legend: { display: false },
+                            tooltip: { enabled: true, callbacks: { label: function(context) { return 'AB Brasil: ' + context.parsed.y.toFixed(2) + '%'; } } }
+                        },
+                        scales: {
+                            y: { beginAtZero: true, max: 40, grid: { display: true, color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#7a7a9e', callback: function(value) { return value + '%'; } } },
+                            x: { grid: { display: false }, ticks: { color: '#7a7a9e' } }
+                        }
+                    }
+                });
+            }
+
+            // Gráfico Trimestral
+            const ctxABTrim = document.getElementById('abBrasilTrimChart');
+            if (ctxABTrim) {
+                const trimestralData = [
+                    { trimestre: 'Q1 2025', media: ((30.97 + 31.89 + 33.81) / 3).toFixed(2) },
+                    { trimestre: 'Q2 2025', media: ((26.18 + 32.08 + 34.79) / 3).toFixed(2) },
+                    { trimestre: 'Q3 2025', media: ((31.16 + 33.64 + 32.03) / 3).toFixed(2) },
+                    { trimestre: 'Q4 2025', media: parseFloat(31.50).toFixed(2) }
+                ];
+                charts.abBrasilTrimChart = new Chart(ctxABTrim, {
+                    type: 'bar',
+                    data: {
+                        labels: trimestralData.map(d => d.trimestre),
+                        datasets: [{
+                            label: 'Média Trimestral (%)',
+                            data: trimestralData.map(d => parseFloat(d.media)),
+                            backgroundColor: 'rgba(156, 39, 176, 0.8)',
+                            borderColor: '#9c27b0',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            datalabels: {
+                                display: true,
+                                color: '#ffffff',
+                                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                                borderRadius: 4,
+                                padding: 6,
+                                font: { size: 12, weight: 'bold' },
+                                align: 'end',
+                                anchor: 'end',
+                                offset: 4,
+                                formatter: function(value) { return value.toFixed(2) + '%'; }
+                            },
+                            legend: { display: false },
+                            tooltip: { enabled: true, callbacks: { label: function(context) { return 'Média: ' + context.parsed.y.toFixed(2) + '%'; } } }
+                        },
+                        scales: {
+                            y: { beginAtZero: true, max: 40, grid: { display: true, color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#7a7a9e', callback: function(value) { return value + '%'; } } },
+                            x: { grid: { display: false }, ticks: { color: '#7a7a9e' } }
+                        }
+                    }
+                });
+            }
+        }
+
         // Inicializar
         window.addEventListener('load', () => {
             initializeSelects();
             updateAllCharts();
+            createABBrasilCharts();
         });
     </script>
 </body>
